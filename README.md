@@ -19,7 +19,7 @@ Instalasi
 Anda dapat mengunduh file ZIP dari repository ini atau menggunakan perintah git:
 
 ```bash
-git clone https://github.com/yourgithub/EEPROMHandler.git
+git clone https://github.com/baaaaan1/EEPROMHandler.git
 ```
 
 ### Pindahkan ke Folder Library Arduino
