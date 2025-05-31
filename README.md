@@ -1,4 +1,4 @@
-#EEPROMHandler Library
+# EEPROMHandler Library
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/baaaaan1/EEPROMHandler)
 ![GitHub](https://img.shields.io/github/license/baaaaan1/EEPROMHandler)
 
