@@ -1,6 +1,10 @@
+:repository-owner: baaaaan1
+:repository-name: EEPROMHandler
+
 # EEPROMHandler Library
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/baaaaan1/EEPROMHandler)
 ![GitHub](https://img.shields.io/github/license/baaaaan1/EEPROMHandler)
+
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml/badge.svg["Check Arduino status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml"]
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml/badge.svg["Compile Examples status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml"]
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml/badge.svg["Spell Check status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml"]
