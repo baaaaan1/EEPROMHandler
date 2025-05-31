@@ -1,13 +1,15 @@
 :repository-owner: baaaaan1
 :repository-name: EEPROMHandler
 
-# EEPROMHandler Library
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/baaaaan1/EEPROMHandler)
-![GitHub](https://img.shields.io/github/license/baaaaan1/EEPROMHandler)
+= {repository-name} Library for Arduino =
 
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml/badge.svg["Check Arduino status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml"]
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml/badge.svg["Compile Examples status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml"]
 image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml/badge.svg["Spell Check status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml"]
+
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/baaaaan1/EEPROMHandler)
+![GitHub](https://img.shields.io/github/license/baaaaan1/EEPROMHandler)
 
 EEPROMHandler is a lightweight library designed to simplify storing and retrieving data from AT24C256 EEPROM using STM32 HAL. The library supports storing integers, booleans, and arrays, and can be extended as needed for your project.
 
