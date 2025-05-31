@@ -1,24 +1,26 @@
 #ifndef EEPROMHANDLER_H
 #define EEPROMHANDLER_H
 
-#include <Wire.h>
+#include "stm32f1xx_hal.h" // Include STM32 HAL header
 
 class EEPROMHandler {
 private:
-    uint8_t deviceAddress;
-    int baseAddress;
+    I2C_HandleTypeDef *hi2c; // Pointer to the I2C peripheral handle
+    uint8_t deviceAddress;   // I2C device address
+    int baseAddress;         // Base address for EEPROM operations
 
 public:
-    EEPROMHandler(uint8_t deviceAddress, int baseAddr = 0x0000);
+    // Constructor
+    EEPROMHandler(I2C_HandleTypeDef *hi2c, uint8_t deviceAddress, int baseAddr = 0x0000);
 
-    // Fungsi dasar untuk menyimpan dan membaca data
+    // Basic functions for saving and reading data
     void saveInt(int address, int value);
     int readInt(int address);
 
     void saveBool(int address, bool value);
     bool readBool(int address);
 
-    // Fungsi utilitas untuk membaca atau menyimpan array
+    // Utility functions for saving and reading arrays
     void saveIntArray(int startAddress, int values[], int size);
     void readIntArray(int startAddress, int values[], int size);
 };

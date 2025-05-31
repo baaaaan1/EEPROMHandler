@@ -1,0 +1,4 @@
+EEPROMHandler	KEYWORD1
+saveInt	KEYWORD2
+readInt	KEYWORD2
+save

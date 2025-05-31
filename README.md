@@ -1,153 +1,101 @@
 EEPROMHandler Library
 =====================
 
-EEPROMHandler adalah library sederhana untuk mempermudah penyimpanan dan pembacaan data dari modul EEPROM AT24C256 menggunakan Arduino dan perangkat berbasis I2C lainnya. Library ini mendukung penyimpanan tipe data integer, boolean, dan array, serta dapat diperluas sesuai kebutuhan proyek Anda.
+EEPROMHandler is a lightweight library designed to simplify storing and retrieving data from AT24C256 EEPROM using STM32 HAL. The library supports storing integers, booleans, and arrays, and can be extended as needed for your project.
 
-Fitur
+Features
 --------
 
-*   Menyimpan dan membaca nilai integer dan boolean ke/dari EEPROM.
-*   Mendukung penyimpanan dan pembacaan array integer.
-*   Mudah digunakan dengan antarmuka yang intuitif.
-*   Kompatibel dengan modul EEPROM berbasis I2C seperti AT24C256.
+*   Save and read integer and boolean values to/from EEPROM.
+*   Support for saving and reading arrays of integers.
+*   Easy-to-use interface with intuitive methods.
+*   Compatible with I2C-based EEPROM modules like AT24C256.
+*   Optimized for STM32 HAL.
 
-Instalasi
+Installation
 ------------
 
-### Download atau Clone Repository
+### Clone Repository
 
-Anda dapat mengunduh file ZIP dari repository ini atau menggunakan perintah git:
+You can clone the repository using the following command:
 
 ```bash
 git clone https://github.com/baaaaan1/EEPROMHandler.git
 ```
 
-### Pindahkan ke Folder Library Arduino
+Add to Your STM32 Project
+Place the library files (EEPROMHandler.h and EEPROMHandler.cpp) in your STM32 project directory and include them in your project.
 
-Ekstrak folder dan tempatkan di direktori library Arduino Anda:
+Usage
+1. Initialization
+Include the library in your STM32 project:
 
 ```bash
-Documents/Arduino/libraries/EEPROMHandler
-```
-
-### Restart Arduino IDE
-
-Setelah instalasi, restart Arduino IDE agar library dikenali.
-
-Cara Penggunaan
-----------------
-
-### 1. Inisialisasi
-
-Tambahkan library di bagian awal program Anda:
-
-```cpp
-#include <Wire.h>
 #include "EEPROMHandler.h"
 ```
+Initialize the EEPROMHandler object with the I2C peripheral handle, device address, and base address:
 
-Inisialisasi library dengan alamat EEPROM:
+```bash
+I2C_HandleTypeDef hi2c1; // Example I2C handle
+EEPROMHandler eeprom(&hi2c1, 0x50, 0x0000); // Device address 0x50, base address 0x0000
+```
+2. Save and Read Data
+Save an integer to EEPROM:
 
-```cpp
-EEPROMHandler eeprom(0x50); // 0x50 adalah alamat I2C default
+```bash
+eeprom.saveInt(0x10, 12345); // Save 12345 at address 0x10
 ```
 
-### 2. Menyimpan Data
+Read an integer from EEPROM:
 
-Gunakan fungsi `saveInt()`, `saveBool()`, atau `saveIntArray()` untuk menyimpan data:
-
-```cpp
-eeprom.saveInt(0, 1234); // Simpan integer 1234 di alamat 0
-eeprom.saveBool(10, true); // Simpan nilai boolean true di alamat 10
-
-int numbers[] = {10, 20, 30, 40, 50};
-eeprom.saveIntArray(20, numbers, 5); // Simpan array integer di alamat 20
+```bash
+int value = eeprom.readInt(0x10); // Read value from address 0x10
 ```
 
-### 3. Membaca Data
+Save a boolean to EEPROM:
 
-Gunakan fungsi `readInt()`, `readBool()`, atau `readIntArray()` untuk membaca data:
-
-```cpp
-int value = eeprom.readInt(0); // Baca integer dari alamat 0
-bool flag = eeprom.readBool(10); // Baca boolean dari alamat 10
-
-int readNumbers[5];
-eeprom.readIntArray(20, readNumbers, 5); // Baca array dari alamat 20
+```bash
+eeprom.saveBool(0x20, true); // Save true at address 0x20
 ```
 
-### 4. Contoh Program Lengkap
+Read a boolean from EEPROM:
 
-Berikut adalah program lengkap yang dapat dicoba:
-
-```cpp
-#include <Wire.h>
-#include "EEPROMHandler.h"
-
-EEPROMHandler eeprom(0x50);
-
-void setup() {
-    Serial.begin(9600);
-    Wire.begin();
-
-    // Menyimpan data
-    eeprom.saveInt(0, 1234);
-    eeprom.saveBool(10, true);
-
-    int numbers[] = {10, 20, 30, 40, 50};
-    eeprom.saveIntArray(20, numbers, 5);
-
-    Serial.println("Data saved!");
-
-    // Membaca data
-    int value = eeprom.readInt(0);
-    bool flag = eeprom.readBool(10);
-
-    int readNumbers[5];
-    eeprom.readIntArray(20, readNumbers, 5);
-
-    // Menampilkan data yang dibaca
-    Serial.println("Data read:");
-    Serial.print("value: "); Serial.println(value);
-    Serial.print("flag: "); Serial.println(flag);
-
-    Serial.print("numbers: ");
-    for (int i = 0; i < 5; i++) {
-        Serial.print(readNumbers[i]); Serial.print(" ");
-    }
-    Serial.println();
-}
-
-void loop() {
-    // Kosong
-}
+```bash
+bool flag = eeprom.readBool(0x20); // Read boolean from address 0x20
 ```
 
-Struktur File
---------------
+Save an array of integers to EEPROM:
 
-```css
-EEPROMHandler/
-├── examples/
-│   └── EEPROMHandlerExample/
-│       └── EEPROMHandlerExample.ino
-├── src/
-│   ├── EEPROMHandler.cpp
-│   └── EEPROMHandler.h
-├── library.properties
+```bash
+int values[] = {10, 20, 30};
+eeprom.saveIntArray(0x30, values, 3); // Save array starting at address 0x30
 ```
 
-Kontribusi
-------------
+Read an array of integers from EEPROM:
 
-Kontribusi dalam bentuk peningkatan fitur, optimasi, atau pelaporan bug sangat diterima! Anda dapat melakukan pull request atau membuat issue di repository ini untuk membantu meningkatkan kualitas library ini.
+```bash
+int readValues[3];
+eeprom.readIntArray(0x30, readValues, 3); // Read array starting at address 0x30
+```
 
-Lisensi
---------
+Notes
+Ensure the I2C peripheral is properly initialized in your STM32 project before using the library.
+Adjust the device address and base address as needed for your EEPROM module.
+License
+This library is licensed under the GNU General Public License v3.0. See the LICENSE file for details.
 
-Proyek ini dilisensikan di bawah GPL-3.0 License. Anda bebas menggunakan, memodifikasi, dan mendistribusikan library ini sesuai dengan ketentuan lisensi. Perlu diingat bahwa setiap penggunaan, modifikasi, atau pendistribusian harus mematuhi ketentuan lisensi dan menyertakan keterangan tentang sumber asli library ini.
 
-Kontak
---------
+### Key Changes:
+1. **Removed Arduino-Specific Instructions**:
+   - Removed references to Arduino IDE and `Wire.h`.
 
-Jika Anda memiliki pertanyaan, saran, atau ingin berkontribusi, jangan ragu untuk menghubungi kami melalui email atau issue di GitHub. Kami senang membantu dan menerima umpan balik dari Anda!
+2. **Added STM32 HAL Instructions**:
+   - Updated initialization and usage examples to reflect STM32 HAL compatibility.
+
+3. **Updated Installation Instructions**:
+   - Provided instructions for adding the library to an STM32 project.
+
+4. **Retained License Information**:
+   - Included a note about the GNU GPL license.
+
+This updated [README.md](http://_vscodecontentref_/2) ensures the library documentation is aligned with STM32 development practices.
