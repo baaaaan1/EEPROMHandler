@@ -1,5 +1,6 @@
-EEPROMHandler Library
-=====================
+#EEPROMHandler Library
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/baaaaan1/EEPROMHandler)
+![GitHub](https://img.shields.io/github/license/baaaaan1/EEPROMHandler)
 
 EEPROMHandler is a lightweight library designed to simplify storing and retrieving data from AT24C256 EEPROM using STM32 HAL. The library supports storing integers, booleans, and arrays, and can be extended as needed for your project.
 
